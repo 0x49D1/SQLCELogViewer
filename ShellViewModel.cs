@@ -4,15 +4,19 @@ using System.Data.EntityClient;
 using System.Linq;
 using System.Windows;
 using Caliburn.Micro;
+using System.ComponentModel.Composition;
+using NLog;
+using LogManager = NLog.LogManager;
 
 namespace DeltaLogViewer
 {
-    using System.ComponentModel.Composition;
+
 
     [Export(typeof(IShell))]
     public class ShellViewModel : Screen, IShell
     {
         private string providerConnectionString = string.Empty;
+        private static Logger logger = LogManager.GetCurrentClassLogger();
 
         private ObservableCollection<LogEntry> _itemsList = null;
 
@@ -39,10 +43,11 @@ namespace DeltaLogViewer
             LoggerEntities context = new LoggerEntities(entityBuilder.ConnectionString);
             try
             {
-                ItemsList = new ObservableCollection<LogEntry>(context.LogEntries.OrderByDescending(l=>l.id).ToList());
+                ItemsList = new ObservableCollection<LogEntry>(context.LogEntries.OrderByDescending(l => l.id).ToList());
             }
             catch (Exception e)
             {
+                logger.ErrorException("LoadDataSource", e);
                 MessageBox.Show(e.Message);
             }
         }
@@ -60,9 +65,10 @@ namespace DeltaLogViewer
                 providerConnectionString = droppedFilePaths[0];
                 LoadDataSource();
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                MessageBox.Show(exception.Message);
+                logger.ErrorException("DropHandler", ex);
+                MessageBox.Show(ex.Message);
             }
         }
     }
