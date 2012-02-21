@@ -1,6 +1,6 @@
 ﻿using MahApps.Metro.Controls;
 
-namespace DeltaLogViewer
+namespace SQLCELogViewer
 {
     public partial class ShellView : MetroWindow
     {

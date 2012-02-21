@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DeltaLogViewer.Properties
+namespace SQLCELogViewer.Properties
 {
 
 

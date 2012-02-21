@@ -16,7 +16,7 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
-namespace DeltaLogViewer
+namespace SQLCELogViewer
 {
     #region Contexts
     

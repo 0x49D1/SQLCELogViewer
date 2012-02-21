@@ -1,4 +1,4 @@
-﻿namespace DeltaLogViewer
+﻿namespace SQLCELogViewer
 {
 	using System;
 	using System.Collections.Generic;

@@ -8,7 +8,7 @@ using System.ComponentModel.Composition;
 using NLog;
 using LogManager = NLog.LogManager;
 
-namespace DeltaLogViewer
+namespace SQLCELogViewer
 {
 
 

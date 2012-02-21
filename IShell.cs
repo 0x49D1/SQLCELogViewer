@@ -1,3 +1,3 @@
-﻿namespace DeltaLogViewer {
+﻿namespace SQLCELogViewer {
     public interface IShell {}
 }

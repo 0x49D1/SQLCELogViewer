@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Shell;
 using NLog;
 
-namespace DeltaLogViewer
+namespace SQLCELogViewer
 {
     /// <summary>
     /// Interaction logic for App.xaml
