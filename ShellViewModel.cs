@@ -18,6 +18,18 @@ namespace SQLCELogViewer
         private string providerConnectionString = string.Empty;
         private static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private string _logFilePath = "SQLCELogViewer";
+
+        public string LogFilePath
+        {
+            get { return _logFilePath; }
+            set
+            {
+                _logFilePath = value;
+                NotifyOfPropertyChange(() => LogFilePath);
+            }
+        }
+
         private ObservableCollection<LogEntry> _itemsList = null;
 
         public ObservableCollection<LogEntry> ItemsList
@@ -62,7 +74,7 @@ namespace SQLCELogViewer
                 return;
             try
             {
-                providerConnectionString = droppedFilePaths[0];
+                LogFilePath = providerConnectionString = droppedFilePaths[0];
                 LoadDataSource();
             }
             catch (Exception ex)
