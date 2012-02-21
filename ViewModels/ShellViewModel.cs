@@ -49,7 +49,7 @@ namespace SQLCELogViewer
 
             EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
             entityBuilder.Metadata = "res://*/LogDBModel.csdl|res://*/LogDBModel.ssdl|res://*/LogDBModel.msl";
-            entityBuilder.Provider = "System.Data.SqlServerCe.4.0";
+            entityBuilder.Provider = "System.Data.SqlServerCe";
             entityBuilder.ProviderConnectionString = "Data Source=" + providerConnectionString;
 
             LoggerEntities context = new LoggerEntities(entityBuilder.ConnectionString);

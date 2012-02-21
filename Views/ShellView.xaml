@@ -6,7 +6,7 @@
                       xmlns:filter="clr-namespace:DataGridFilterLibrary;assembly=DataGridFilterLibrary"
                       cal:Message.Attach="[Event Loaded] = [Action LoadDataSource]"  
                       Title="{Binding LogFilePath}"
-        Icon="icon.ico">
+        Icon="../icon.ico">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
