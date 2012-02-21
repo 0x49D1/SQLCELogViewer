@@ -39,28 +39,30 @@ namespace DeltaLogViewer
             LoggerEntities context = new LoggerEntities(entityBuilder.ConnectionString);
             try
             {
-                ItemsList = new ObservableCollection<LogEntry>(context.LogEntries.ToList());
+                ItemsList = new ObservableCollection<LogEntry>(context.LogEntries.OrderByDescending(l=>l.id).ToList());
             }
             catch (Exception e)
             {
-
+                MessageBox.Show(e.Message);
             }
         }
 
         public void DropHandler(DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+                return;
+
+            string[] droppedFilePaths = e.Data.GetData(DataFormats.FileDrop, true) as string[];
+            if (droppedFilePaths == null || droppedFilePaths.Length == 0)
+                return;
+            try
             {
-                string[] droppedFilePaths = e.Data.GetData(DataFormats.FileDrop, true) as string[];
-                try
-                {
-                    providerConnectionString = droppedFilePaths[0];
-                    LoadDataSource();
-                }
-                catch (Exception exception)
-                {
-                    MessageBox.Show(exception.Message);
-                }
+                providerConnectionString = droppedFilePaths[0];
+                LoadDataSource();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
             }
         }
     }
