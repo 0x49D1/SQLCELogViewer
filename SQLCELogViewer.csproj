@@ -61,8 +61,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Tools\DataGridFilterLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <Private>True</Private>
+    <Reference Include="EntityFramework">
       <HintPath>packages\EntityFramework.4.1.10715.0\lib\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="MahApps.Metro">
@@ -95,6 +94,9 @@
     </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.XML" />
+    <Reference Include="WebActivator">
+      <HintPath>packages\WebActivator.1.0.0.0\lib\WebActivator.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
