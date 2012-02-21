@@ -49,6 +49,9 @@
     <Reference Include="MahApps.Metro">
       <HintPath>packages\MahApps.Metro.0.6.0.1\lib\net40\MahApps.Metro.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
@@ -118,6 +121,9 @@
     <None Include="LogDBModel.edmx.diagram">
       <DependentUpon>LogDBModel.edmx</DependentUpon>
     </None>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -129,6 +135,9 @@
     <Resource Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Logger.sdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Tools\DataGridFilterLibrary.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DeltaLogViewer")]
+[assembly: AssemblyTitle("SQLCELogViewer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Delta-Comm")]
-[assembly: AssemblyProduct("DeltaLogViewer")]
-[assembly: AssemblyCopyright("Copyright © Delta-Comm")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("SQLCELogViewer")]
+[assembly: AssemblyCopyright("Copyright © Dmitry Pursanov")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
