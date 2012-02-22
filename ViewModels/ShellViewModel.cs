@@ -10,8 +10,6 @@ using LogManager = NLog.LogManager;
 
 namespace SQLCELogViewer
 {
-
-
     [Export(typeof(IShell))]
     public class ShellViewModel : Screen, IShell
     {
