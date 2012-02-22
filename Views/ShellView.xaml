@@ -4,7 +4,9 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       xmlns:filter="clr-namespace:DataGridFilterLibrary;assembly=DataGridFilterLibrary"
-                      cal:Message.Attach="[Event Loaded] = [Action LoadDataSource]"  
+                      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                      xmlns:local="clr-namespace:SQLCELogViewer.Utilities"
+                      cal:Message.Attach="[Event Loaded] = [Action LoadDataSource]"
                       Title="{Binding LogFilePath}"
         Icon="../icon.ico">
     <Window.Resources>
@@ -20,7 +22,14 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-
+    <i:Interaction.Triggers>
+        <local:InputBindingTrigger>
+            <local:InputBindingTrigger.InputBinding>
+                <KeyBinding Key="F5"/>
+            </local:InputBindingTrigger.InputBinding>
+            <cal:ActionMessage MethodName="LoadDataSource"/>
+        </local:InputBindingTrigger>
+    </i:Interaction.Triggers>
     <DockPanel>
         <DataGrid ItemsSource="{Binding ItemsList}" AutoGenerateColumns="True" 
                   AllowDrop="True" 
