@@ -8,6 +8,7 @@
                       xmlns:local="clr-namespace:SQLCELogViewer.Utilities"
                       cal:Message.Attach="[Event Loaded] = [Action LoadDataSource]"
                       Title="{Binding LogFilePath}"
+                      Topmost="True"
         Icon="../icon.ico">
     <Window.Resources>
         <ResourceDictionary>
@@ -36,9 +37,11 @@
                   cal:Message.Attach="[Event Drop] = [Action DropHandler($eventArgs)]" 
                   filter:DataGridExtensions.IsClearButtonVisible="False" 
                   filter:DataGridExtensions.IsFilterVisible="True"
+                  filter:DataGridExtensions.UseBackgroundWorkerForFiltering="True"
                   ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
 		                       TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
 		                       ResourceId=DataGridHeaderFilterControlStyle}}">
+            
 
         </DataGrid>
     </DockPanel>

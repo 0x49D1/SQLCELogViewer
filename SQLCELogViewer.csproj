@@ -111,9 +111,6 @@
     </Reference>
     <Reference Include="System.Xaml" />
     <Reference Include="System.XML" />
-    <Reference Include="WebActivator">
-      <HintPath>packages\WebActivator.1.0.0.0\lib\WebActivator.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />

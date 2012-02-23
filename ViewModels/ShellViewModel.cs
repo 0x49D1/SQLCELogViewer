@@ -44,6 +44,8 @@ namespace SQLCELogViewer
         {
             if (string.IsNullOrEmpty(providerConnectionString))
                 return;
+            if (ItemsList != null)
+                ItemsList.Clear();
 
             EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
             entityBuilder.Metadata = "res://*/LogDBModel.csdl|res://*/LogDBModel.ssdl|res://*/LogDBModel.msl";
