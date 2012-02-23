@@ -48,7 +48,7 @@
                                     Binding="{Binding id}"
                                     filter:DataGridColumnExtensions.FilterMemberPathProperty="id" />
                 <DataGridTextColumn Header="Time"
-                                    Binding="{Binding TimeStamp}"
+                                    Binding="{Binding TimeStamp, StringFormat={}\{0:G\}}"
                                     filter:DataGridColumnExtensions.IsBetweenFilterControl="True"/>
                 <DataGridTextColumn Header="Message"
                                     MaxWidth="500"
