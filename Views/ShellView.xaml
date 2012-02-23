@@ -77,12 +77,6 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellEditingTemplate>
                 </DataGridTemplateColumn>
-                <!--<DataGridTextColumn 
-                                    IsReadOnly="False"
-                                    Header="Exception"
-                                    MaxWidth="500"
-                                    Binding="{Binding Exception}"
-                                    filter:DataGridColumnExtensions.FilterMemberPathProperty="Exception" />-->
                 <DataGridTextColumn Header="Level"
                                     IsReadOnly="True"
                                     Binding="{Binding level}"
