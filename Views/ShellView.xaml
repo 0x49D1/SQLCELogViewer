@@ -32,7 +32,8 @@
         </local:InputBindingTrigger>
     </i:Interaction.Triggers>
     <DockPanel>
-        <DataGrid ItemsSource="{Binding ItemsList}" AutoGenerateColumns="True" 
+        <DataGrid ItemsSource="{Binding ItemsList}" 
+                  AutoGenerateColumns="False"
                   AllowDrop="True" 
                   cal:Message.Attach="[Event Drop] = [Action DropHandler($eventArgs)]" 
                   filter:DataGridExtensions.IsClearButtonVisible="False" 
@@ -41,7 +42,23 @@
                   ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
 		                       TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
 		                       ResourceId=DataGridHeaderFilterControlStyle}}">
-            
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID"
+                                    Binding="{Binding id}"
+                                    filter:DataGridColumnExtensions.FilterMemberPathProperty="id" />
+                <DataGridTextColumn Header="Time"
+                                    Binding="{Binding TimeStamp}"
+                                    filter:DataGridColumnExtensions.IsBetweenFilterControl="True"/>
+                <DataGridTextColumn Header="Message"
+                                    Binding="{Binding Message}"
+                                    filter:DataGridColumnExtensions.FilterMemberPathProperty="Message" />
+                <DataGridTextColumn Header="Level"
+                                    Binding="{Binding level}"
+                                    filter:DataGridColumnExtensions.FilterMemberPathProperty="level" />
+                <DataGridTextColumn Header="Logger"
+                                    Binding="{Binding logger}"
+                                    filter:DataGridColumnExtensions.FilterMemberPathProperty="logger" />
+            </DataGrid.Columns>
 
         </DataGrid>
     </DockPanel>
