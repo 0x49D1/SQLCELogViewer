@@ -76,7 +76,10 @@ namespace SQLCELogViewer
                 return;
             try
             {
-                LogFilePath = providerConnectionString = droppedFilePaths[0];
+                providerConnectionString = droppedFilePaths[0];
+                LogFilePath = providerConnectionString.Length > 60 
+                    ? string.Format("{0}...{1}", providerConnectionString.Substring(0, 48), providerConnectionString.Substring(providerConnectionString.Length - 12, 12)) 
+                    : providerConnectionString;
                 LoadDataSource();
             }
             catch (Exception ex)
