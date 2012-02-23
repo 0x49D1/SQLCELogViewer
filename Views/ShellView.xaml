@@ -51,9 +51,13 @@
                                     Binding="{Binding TimeStamp, StringFormat={}\{0:G\}}"
                                     filter:DataGridColumnExtensions.IsBetweenFilterControl="True"/>
                 <DataGridTextColumn Header="Message"
-                                    MaxWidth="500"
+                                    MaxWidth="250"
                                     Binding="{Binding Message}"
                                     filter:DataGridColumnExtensions.FilterMemberPathProperty="Message" />
+                <DataGridTextColumn Header="Exception"
+                                    MaxWidth="500"
+                                    Binding="{Binding Exception}"
+                                    filter:DataGridColumnExtensions.FilterMemberPathProperty="Exception" />
                 <DataGridTextColumn Header="Level"
                                     Binding="{Binding level}"
                                     filter:DataGridColumnExtensions.FilterMemberPathProperty="level" />
