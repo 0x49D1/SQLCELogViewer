@@ -52,15 +52,17 @@ namespace SQLCELogViewer
             entityBuilder.Provider = "System.Data.SqlServerCe.4.0";
             entityBuilder.ProviderConnectionString = "Data Source=" + providerConnectionString;
 
-            LoggerEntities context = new LoggerEntities(entityBuilder.ConnectionString);
-            try
+            using (LoggerEntities context = new LoggerEntities(entityBuilder.ConnectionString))
             {
-                ItemsList = new ObservableCollection<LogEntry>(context.LogEntries.OrderByDescending(l => l.id).ToList());
-            }
-            catch (Exception e)
-            {
-                logger.ErrorException("LoadDataSource", e);
-                MessageBox.Show(e.Message);
+                try
+                {
+                    ItemsList = new ObservableCollection<LogEntry>(context.LogEntries.OrderByDescending(l => l.id).ToList());
+                }
+                catch (Exception e)
+                {
+                    logger.ErrorException("LoadDataSource", e);
+                    MessageBox.Show(e.Message);
+                }
             }
         }
 
