@@ -33,16 +33,18 @@
         </local:InputBindingTrigger>
     </i:Interaction.Triggers>
     <DockPanel>
-        <DataGrid ItemsSource="{Binding ItemsList}" 
-                  AutoGenerateColumns="False"
-                  AllowDrop="True" 
-                  cal:Message.Attach="[Event Drop] = [Action DropHandler($eventArgs)]" 
-                  filter:DataGridExtensions.IsClearButtonVisible="False" 
-                  filter:DataGridExtensions.IsFilterVisible="True"
-                  filter:DataGridExtensions.UseBackgroundWorkerForFiltering="True"
-                  ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
-		                       TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
-		                       ResourceId=DataGridHeaderFilterControlStyle}}">
+        <DataGrid 
+            IsReadOnly="True" 
+            ItemsSource="{Binding ItemsList}" 
+            AutoGenerateColumns="False"
+            AllowDrop="True" 
+            cal:Message.Attach="[Event Drop] = [Action DropHandler($eventArgs)]" 
+            filter:DataGridExtensions.IsClearButtonVisible="False" 
+            filter:DataGridExtensions.IsFilterVisible="True"
+            filter:DataGridExtensions.UseBackgroundWorkerForFiltering="True"
+            ColumnHeaderStyle="{StaticResource {ComponentResourceKey 
+		                TypeInTargetAssembly={x:Type filter:DataGridHeaderFilterControl}, 
+		                ResourceId=DataGridHeaderFilterControlStyle}}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID"
                                     Binding="{Binding id}"
