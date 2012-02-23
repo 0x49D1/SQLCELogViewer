@@ -34,7 +34,6 @@
     </i:Interaction.Triggers>
     <DockPanel>
         <DataGrid 
-            IsReadOnly="True" 
             ItemsSource="{Binding ItemsList}" 
             AutoGenerateColumns="False"
             AllowDrop="True" 
@@ -47,23 +46,49 @@
 		                ResourceId=DataGridHeaderFilterControlStyle}}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID"
+                                    IsReadOnly="True"
                                     Binding="{Binding id}"
                                     filter:DataGridColumnExtensions.FilterMemberPathProperty="id" />
                 <DataGridTextColumn Header="Time"
+                                    IsReadOnly="True"
                                     Binding="{Binding TimeStamp, StringFormat={}\{0:G\}}"
                                     filter:DataGridColumnExtensions.IsBetweenFilterControl="True"/>
                 <DataGridTextColumn Header="Message"
                                     MaxWidth="250"
                                     Binding="{Binding Message}"
                                     filter:DataGridColumnExtensions.FilterMemberPathProperty="Message" />
-                <DataGridTextColumn Header="Exception"
+                <DataGridTemplateColumn Header="Exception" MaxWidth="500">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Exception}"     
+                                     TextWrapping="Wrap">
+                            </TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Exception}"                                     
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     VerticalScrollBarVisibility="Auto"
+                                     HorizontalScrollBarVisibility="Auto"
+                                     ScrollViewer.CanContentScroll="True">
+                            </TextBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <!--<DataGridTextColumn 
+                                    IsReadOnly="False"
+                                    Header="Exception"
                                     MaxWidth="500"
                                     Binding="{Binding Exception}"
-                                    filter:DataGridColumnExtensions.FilterMemberPathProperty="Exception" />
+                                    filter:DataGridColumnExtensions.FilterMemberPathProperty="Exception" />-->
                 <DataGridTextColumn Header="Level"
+                                    IsReadOnly="True"
                                     Binding="{Binding level}"
                                     filter:DataGridColumnExtensions.FilterMemberPathProperty="level" />
                 <DataGridTextColumn Header="Logger"
+                                    IsReadOnly="True"
                                     Binding="{Binding logger}"
                                     filter:DataGridColumnExtensions.FilterMemberPathProperty="logger" />
             </DataGrid.Columns>
