@@ -15,7 +15,7 @@ namespace SQLCELogViewer
         {
             if (((Keyboard.Modifiers & (ModifierKeys.Control | ModifierKeys.Shift)) != 0) && e.Key == Key.E)
             {
-                Export.ExportToCSV(dgLog);
+                ExportManager.ExportToCSV(dgLog);
             }
         }
 

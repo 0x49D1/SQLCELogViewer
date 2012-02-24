@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace SQLCELogViewer.Utilities
 {
-    public static class Export
+    public static class ExportManager
     {
         public static void ExportToCSV(System.Windows.Controls.DataGrid dg)
         {
