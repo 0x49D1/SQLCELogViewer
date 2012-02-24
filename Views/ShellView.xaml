@@ -10,6 +10,8 @@
                       Title="{Binding LogFilePath}"
                       Topmost="True"
                       SizeToContent="Width"
+                      KeyDown="MetroWindow_KeyDown"
+                      MouseDown="MetroWindow_MouseDown"
         Icon="../icon.ico">
     <Window.Resources>
         <ResourceDictionary>
@@ -32,8 +34,10 @@
             <cal:ActionMessage MethodName="LoadDataSource"/>
         </local:InputBindingTrigger>
     </i:Interaction.Triggers>
+    
     <DockPanel>
         <DataGrid 
+            x:Name="dgLog"
             ItemsSource="{Binding ItemsList}" 
             AutoGenerateColumns="False"
             AllowDrop="True" 

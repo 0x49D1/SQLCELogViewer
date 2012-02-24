@@ -123,6 +123,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utilities\Export.cs" />
     <Compile Include="Utilities\HotKey.cs" />
     <Compile Include="Utilities\HotKeyWinApi.cs" />
     <Compile Include="Utilities\InputBindingTrigger.cs" />
