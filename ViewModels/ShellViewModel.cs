@@ -2,11 +2,14 @@
 using System.Collections.ObjectModel;
 using System.Data.EntityClient;
 using System.Linq;
-using System.Windows;
-using Caliburn.Micro;
+using System.Windows.Forms;
 using System.ComponentModel.Composition;
 using NLog;
+using DataFormats = System.Windows.DataFormats;
+using DragEventArgs = System.Windows.DragEventArgs;
 using LogManager = NLog.LogManager;
+using MessageBox = System.Windows.MessageBox;
+using Screen = Caliburn.Micro.Screen;
 
 namespace SQLCELogViewer
 {
@@ -66,6 +69,30 @@ namespace SQLCELogViewer
             }
         }
 
+        private void ReloadDataGrid(string[] filePaths)
+        {
+            providerConnectionString = filePaths[0];
+            LogFilePath = providerConnectionString.Length > 60
+                              ? string.Format("{0}...{1}", providerConnectionString.Substring(0, 48),
+                                              providerConnectionString.Substring(providerConnectionString.Length - 12, 12))
+                              : providerConnectionString;
+            LoadDataSource();
+        }
+
+        public void OpenLog()
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = "c:\\";
+            ofd.Filter = "SQLCE database file (*.sdf)|*.sdf|All files (*.*)|*.*";
+            ofd.RestoreDirectory = true;
+            ofd.CheckFileExists = false;
+
+            if (ofd.ShowDialog() == DialogResult.OK && ofd.FileNames.Length > 0)
+            {
+                ReloadDataGrid(ofd.FileNames);
+            }
+        }
+
         public void DropHandler(DragEventArgs e)
         {
             if (!e.Data.GetDataPresent(DataFormats.FileDrop))
@@ -76,11 +103,7 @@ namespace SQLCELogViewer
                 return;
             try
             {
-                providerConnectionString = droppedFilePaths[0];
-                LogFilePath = providerConnectionString.Length > 60 
-                    ? string.Format("{0}...{1}", providerConnectionString.Substring(0, 48), providerConnectionString.Substring(providerConnectionString.Length - 12, 12)) 
-                    : providerConnectionString;
-                LoadDataSource();
+                ReloadDataGrid(droppedFilePaths);
             }
             catch (Exception ex)
             {

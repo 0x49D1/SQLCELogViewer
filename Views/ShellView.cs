@@ -1,10 +1,11 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using MahApps.Metro.Controls;
 using SQLCELogViewer.Utilities;
 
 namespace SQLCELogViewer
 {
-    public partial class ShellView : MetroWindow
+    public partial class ShellView : Window
     {
         public ShellView()
         {
@@ -23,6 +24,16 @@ namespace SQLCELogViewer
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 this.DragMove();
+        }
+
+        private void ButtonMinimiseOnClick(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void ButtonMaxRestoreOnClick(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState == WindowState.Maximized ? WindowState.Normal : WindowState.Maximized;
         }
     }
 }
