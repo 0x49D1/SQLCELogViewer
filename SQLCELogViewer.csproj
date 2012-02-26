@@ -123,12 +123,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MDI\MDIView.xaml.cs">
+      <DependentUpon>MDIView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MDI\MDIViewModel.cs" />
     <Compile Include="Utilities\ExportManager.cs" />
     <Compile Include="Utilities\HotKey.cs" />
     <Compile Include="Utilities\HotKeyWinApi.cs" />
     <Compile Include="Utilities\InputBindingTrigger.cs" />
-    <Compile Include="Views\ShellView.cs" />
-    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="Shell\ShellView.cs" />
+    <Compile Include="Shell\ShellViewModel.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -140,7 +144,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LogDBModel.edmx</DependentUpon>
     </Compile>
-    <Page Include="Views\ShellView.xaml">
+    <Page Include="MDI\MDIView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Shell\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
