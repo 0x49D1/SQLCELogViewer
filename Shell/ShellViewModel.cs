@@ -4,6 +4,7 @@ using System.Data.EntityClient;
 using System.Linq;
 using System.Windows.Forms;
 using System.ComponentModel.Composition;
+using Caliburn.Micro;
 using NLog;
 using DataFormats = System.Windows.DataFormats;
 using DragEventArgs = System.Windows.DragEventArgs;
@@ -14,7 +15,7 @@ using Screen = Caliburn.Micro.Screen;
 namespace SQLCELogViewer
 {
     [Export(typeof(IShell))]
-    public class ShellViewModel : Screen, IShell
+    public class ShellViewModel : Conductor<IScreen>
     {
         private string providerConnectionString = string.Empty;
         private static Logger logger = LogManager.GetCurrentClassLogger();
