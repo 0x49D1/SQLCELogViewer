@@ -1,6 +1,6 @@
 ﻿<Window x:Class="SQLCELogViewer.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="350" Width="400"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Width="400"
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,6 +14,7 @@
                       Title="{Binding LogFilePath}"
                       Topmost="True"
                       SnapsToDevicePixels="True"
+                      Height="{Binding Settings.ItemHeight, Mode=TwoWay}"
                       SizeToContent="Width"
                       KeyDown="MetroWindow_KeyDown"
                       MouseDown="MetroWindow_MouseDown"
@@ -69,6 +70,7 @@
                     </Style>
                 </WrapPanel.Resources>
                 <Button x:Name="OpenLog" Content="OPEN" />
+                <Button x:Name="SaveSettings" Content="SAVE SETTINGS" />
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="30,30,30,10">
                 <WrapPanel.Resources>

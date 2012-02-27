@@ -4,21 +4,24 @@ using System.Data.EntityClient;
 using System.Linq;
 using System.Windows.Forms;
 using System.ComponentModel.Composition;
+using Analects.SettingsService;
 using Caliburn.Micro;
 using NLog;
+using SQLCELogViewer.Models;
 using DataFormats = System.Windows.DataFormats;
 using DragEventArgs = System.Windows.DragEventArgs;
 using LogManager = NLog.LogManager;
 using MessageBox = System.Windows.MessageBox;
-using Screen = Caliburn.Micro.Screen;
 
 namespace SQLCELogViewer
 {
     [Export(typeof(IShell))]
-    public class ShellViewModel : Conductor<IScreen>
+    public class ShellViewModel : Caliburn.Micro.Screen,IShell
     {
         private string providerConnectionString = string.Empty;
         private static Logger logger = LogManager.GetCurrentClassLogger();
+        readonly ISettingsService settingsService;
+        public Settings Settings { get; set; }
 
         private string _logFilePath = "SQLCELogViewer";
 
@@ -41,6 +44,18 @@ namespace SQLCELogViewer
             {
                 _itemsList = value;
                 NotifyOfPropertyChange(() => ItemsList);
+            }
+        }
+
+        [ImportingConstructor]
+        public ShellViewModel(ISettingsService settingsService1)
+        {
+            this.settingsService = settingsService1;
+            Settings = settingsService.Get<Settings>("WindowSettings");
+            if (Settings == null)
+            {
+                Settings = new Settings();
+                SetDefaultSettings();
             }
         }
 
@@ -111,6 +126,23 @@ namespace SQLCELogViewer
                 logger.ErrorException("DropHandler", ex);
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public void SetDefaultSettings()
+        {
+            Settings.FontSize = 40;
+            Settings.FontColor = "White";
+            Settings.ItemBackgroundColor = "Black";
+            Settings.ItemOpacity = 0.5;
+            Settings.ItemHeight = 350;
+
+            SaveSettings();
+        }
+
+        public void SaveSettings()
+        {
+            settingsService.Set("WindowSettings", Settings);
+            settingsService.Save();
         }
     }
 }
