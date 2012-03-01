@@ -10,7 +10,7 @@
                       xmlns:local="clr-namespace:SQLCELogViewer.Utilities"
                       xmlns:sys="clr-namespace:System;assembly=mscorlib"
                       xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
-        xmlns:Shell="clr-namespace:SQLCELogViewer" cal:Message.Attach="[Event Loaded] = [Action LoadDataSource]"
+                      xmlns:Shell="clr-namespace:SQLCELogViewer" cal:Message.Attach="[Event Loaded] = [Action LoadDataSource]"
                       Title="{Binding LogFilePath}"
                       Topmost="True"
                       SnapsToDevicePixels="True"
@@ -18,7 +18,7 @@
                       SizeToContent="Width"
                       KeyDown="MetroWindow_KeyDown"
                       MouseDown="MetroWindow_MouseDown"
-        Icon="../icon.ico"
+         Icon="../icon.ico"
          d:DataContext="{d:DesignInstance Shell:ShellViewModel}">
     <i:Interaction.Behaviors>
         <Behaviours:BorderlessWindowBehavior/>
@@ -95,7 +95,7 @@
                     <SolidColorBrush Color="{DynamicResource HighlightDarkColor}" />
                 </Rectangle.Fill>
             </Rectangle>
-            <DockPanel   Grid.Row="1">
+            <DockPanel Grid.Row="1">
                 <DataGrid 
             x:Name="dgLog"
             ItemsSource="{Binding ItemsList}" 
