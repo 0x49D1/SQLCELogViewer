@@ -5,7 +5,6 @@ using System.Linq;
 using System.Windows.Forms;
 using System.ComponentModel.Composition;
 using Analects.SettingsService;
-using Caliburn.Micro;
 using NLog;
 using SQLCELogViewer.Models;
 using DataFormats = System.Windows.DataFormats;
@@ -16,7 +15,7 @@ using MessageBox = System.Windows.MessageBox;
 namespace SQLCELogViewer
 {
     [Export(typeof(IShell))]
-    public class ShellViewModel : Caliburn.Micro.Screen,IShell
+    public class ShellViewModel : Caliburn.Micro.Screen, IShell
     {
         private string providerConnectionString = string.Empty;
         private static Logger logger = LogManager.GetCurrentClassLogger();
@@ -61,15 +60,12 @@ namespace SQLCELogViewer
 
         public void LoadDataSource()
         {
-            if (string.IsNullOrEmpty(providerConnectionString))
+            EntityConnectionStringBuilder entityBuilder;
+            if (!CreateConnection(out entityBuilder))
                 return;
+
             if (ItemsList != null)
                 ItemsList.Clear();
-
-            EntityConnectionStringBuilder entityBuilder = new EntityConnectionStringBuilder();
-            entityBuilder.Metadata = "res://*/LogDBModel.csdl|res://*/LogDBModel.ssdl|res://*/LogDBModel.msl";
-            entityBuilder.Provider = "System.Data.SqlServerCe.4.0";
-            entityBuilder.ProviderConnectionString = "Data Source=" + providerConnectionString;
 
             using (LoggerEntities context = new LoggerEntities(entityBuilder.ConnectionString))
             {
@@ -83,6 +79,18 @@ namespace SQLCELogViewer
                     MessageBox.Show(e.Message);
                 }
             }
+        }
+
+        private bool CreateConnection(out EntityConnectionStringBuilder entityBuilder)
+        {
+            entityBuilder = new EntityConnectionStringBuilder();
+            if (string.IsNullOrEmpty(providerConnectionString))
+                return false;
+
+            entityBuilder.Metadata = "res://*/LogDBModel.csdl|res://*/LogDBModel.ssdl|res://*/LogDBModel.msl";
+            entityBuilder.Provider = "System.Data.SqlServerCe.4.0";
+            entityBuilder.ProviderConnectionString = "Data Source=" + providerConnectionString;
+            return true;
         }
 
         private void ReloadDataGrid(string[] filePaths)
@@ -143,6 +151,33 @@ namespace SQLCELogViewer
         {
             settingsService.Set("WindowSettings", Settings);
             settingsService.Save();
+        }
+
+        public void ClearLog()
+        {
+            EntityConnectionStringBuilder entityBuilder;
+            if (!CreateConnection(out entityBuilder))
+                return;
+
+            using (LoggerEntities context = new LoggerEntities(entityBuilder.ConnectionString))
+            {
+                try
+                {
+                    var list = new ObservableCollection<LogEntry>(context.LogEntries.ToList());
+                    foreach (var logEntry in list)
+                    {
+                        context.DeleteObject(logEntry);
+                    }
+                    context.SaveChanges();
+
+                    LoadDataSource();
+                }
+                catch (Exception e)
+                {
+                    logger.ErrorException("LoadDataSource", e);
+                    MessageBox.Show(e.Message);
+                }
+            }
         }
     }
 }

@@ -71,6 +71,7 @@
                 </WrapPanel.Resources>
                 <Button x:Name="OpenLog" Content="OPEN" />
                 <Button x:Name="SaveSettings" Content="SAVE SETTINGS" />
+                <Button x:Name="ClearLog" Content="CLEAR LOG" />
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="30,30,30,10">
                 <WrapPanel.Resources>
