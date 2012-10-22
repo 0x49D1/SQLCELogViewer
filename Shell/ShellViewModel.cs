@@ -153,6 +153,9 @@ namespace SQLCELogViewer
             settingsService.Save();
         }
 
+        /// <summary>
+        /// Clears log at once
+        /// </summary>
         public void ClearLog()
         {
             EntityConnectionStringBuilder entityBuilder;

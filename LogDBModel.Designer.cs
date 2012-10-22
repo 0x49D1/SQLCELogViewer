@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 namespace SQLCELogViewer
@@ -123,7 +124,7 @@ namespace SQLCELogViewer
 
         #endregion
 
-        #region Primitive Properties
+        #region Simple Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -142,7 +143,7 @@ namespace SQLCELogViewer
                 {
                     OnidChanging(value);
                     ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value);
+                    _id = StructuralObject.SetValidValue(value, "id");
                     ReportPropertyChanged("id");
                     OnidChanged();
                 }
@@ -167,7 +168,7 @@ namespace SQLCELogViewer
             {
                 OnTimeStampChanging(value);
                 ReportPropertyChanging("TimeStamp");
-                _TimeStamp = StructuralObject.SetValidValue(value);
+                _TimeStamp = StructuralObject.SetValidValue(value, "TimeStamp");
                 ReportPropertyChanged("TimeStamp");
                 OnTimeStampChanged();
             }
@@ -191,7 +192,7 @@ namespace SQLCELogViewer
             {
                 OnMessageChanging(value);
                 ReportPropertyChanging("Message");
-                _Message = StructuralObject.SetValidValue(value, true);
+                _Message = StructuralObject.SetValidValue(value, true, "Message");
                 ReportPropertyChanged("Message");
                 OnMessageChanged();
             }
@@ -215,7 +216,7 @@ namespace SQLCELogViewer
             {
                 OnlevelChanging(value);
                 ReportPropertyChanging("level");
-                _level = StructuralObject.SetValidValue(value, true);
+                _level = StructuralObject.SetValidValue(value, true, "level");
                 ReportPropertyChanged("level");
                 OnlevelChanged();
             }
@@ -239,7 +240,7 @@ namespace SQLCELogViewer
             {
                 OnloggerChanging(value);
                 ReportPropertyChanging("logger");
-                _logger = StructuralObject.SetValidValue(value, true);
+                _logger = StructuralObject.SetValidValue(value, true, "logger");
                 ReportPropertyChanged("logger");
                 OnloggerChanged();
             }
@@ -263,7 +264,7 @@ namespace SQLCELogViewer
             {
                 OnExceptionChanging(value);
                 ReportPropertyChanging("Exception");
-                _Exception = StructuralObject.SetValidValue(value, true);
+                _Exception = StructuralObject.SetValidValue(value, true, "Exception");
                 ReportPropertyChanged("Exception");
                 OnExceptionChanged();
             }
@@ -274,10 +275,8 @@ namespace SQLCELogViewer
 
         #endregion
 
-    
     }
 
     #endregion
 
-    
 }
